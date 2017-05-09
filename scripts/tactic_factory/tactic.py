@@ -1,7 +1,9 @@
 # Super class for all the tactics
 
 import sys
-sys.path.insert(0,'../../plays.py/scripts')
+import time
+
+sys.path.insert(0,'./../../../plays_py/scripts')
 
 from abc import ABCMeta, abstractmethod
 from utils import tactics_union
@@ -16,6 +18,7 @@ class Tactic(object):
 		self.name       = name
 		self.bot_id     = bot_id
 		self.time_out   = time_out
+		self.begin_time = time.time()
 	
 	@abstractmethod
 	def execute(self,state):
