@@ -12,13 +12,15 @@ class Tactic(object):
 	# this default time is in milliseconds
 	__metaclass__ = ABCMeta
 
-	DEFAULT_TIMEOUT_PERIOD = 50
+	DEFAULT_TIMEOUT_PERIOD = 50  
 	param = tactics_union.Param()
-	def __init__(self, name, bot_id, time_out=DEFAULT_TIMEOUT_PERIOD):
-		self.name       = name
+	def __init__(self, bot_id, state, param=None):
+		
+		# TO DO based on when param is None , use state to decide the param
 		self.bot_id     = bot_id
-		self.time_out   = time_out
+		self.time_out   = DEFAULT_TIMEOUT_PERIOD
 		self.begin_time = time.time()
+		self.param      = param
 	
 	@abstractmethod
 	def execute(self,state):

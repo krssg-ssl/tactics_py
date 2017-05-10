@@ -1,21 +1,19 @@
 from tactic import Tactic
 import time
 
-class TStop(Tactic):
+class TPosition(Tactic):
 
 	def __init__(self, bot_id, state, param=None):
-		super(TStop, self).__init__( bot_id, state, param)
-
-		# TODO: Need to set these threshold velocity values
-		self.vel_x_threshold = 0.0
-		self.vel_y_threshold = 0.0
+		super(TPosition, self).__init__( bot_id, state, param)
+		self.param = param
 
 	def execute(self, state):
 		# TODO: call the skill execute instance here
 		pass
 
 	def isComplete(self, state):
-		if state.homeVel[self.bot_id].x <= self.vel_x_threshold and state.homeVel[self.bot_id].y <= self.vel_y_threshold:
+		# TO DO use threshold distance instead of actual co ordinates
+		if state.homeVel[self.bot_id].x == self.param.PositonP.x and state.homeVel[self.bot_id].y == self.param.PositonP.y:
 			return True
 		elif time.time()-self.begin_time > self.time_out:
 			return True
