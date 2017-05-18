@@ -18,7 +18,7 @@ class Tactic(object):
 		
 		# TO DO based on when param is None , use state to decide the param
 		self.bot_id     = bot_id
-		self.time_out   = DEFAULT_TIMEOUT_PERIOD
+		self.time_out   = Tactic.DEFAULT_TIMEOUT_PERIOD
 		self.begin_time = time.time()
 		self.param      = param
 	

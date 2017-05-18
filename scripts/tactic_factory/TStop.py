@@ -1,18 +1,22 @@
 from tactic import Tactic
 import time
+import sys
+
+sys.path.append('/home/kv/catkin_ws/src/skills_py/scripts/skills')
+import sStop
 
 class TStop(Tactic):
 
 	def __init__(self, bot_id, state, param=None):
 		super(TStop, self).__init__( bot_id, state, param)
-
+		self.sParam = skills_union.SParam()
+		
 		# TODO: Need to set these threshold velocity values
 		self.vel_x_threshold = 0.0
 		self.vel_y_threshold = 0.0
 
-	def execute(self, state):
-		# TODO: call the skill execute instance here
-		pass
+	def execute(self, state, pub):
+		sStop.execute(self.sParam, state, self.bot_id, pub)
 
 	def isComplete(self, state):
 		if state.homeVel[self.bot_id].x <= self.vel_x_threshold and state.homeVel[self.bot_id].y <= self.vel_y_threshold:
